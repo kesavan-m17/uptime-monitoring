@@ -4,9 +4,9 @@
 
 ## Needed Arguments
 
-APP=$1 # <Url Service name>
-URL=$2 #'http://your-service-url.com'
-ACCEPTED_CODE=$3 #200
+* APP=$1 # <Url Service name>
+* URL=$2 #'http://your-service-url.com'
+* ACCEPTED_CODE=$3 #200
 
 ```
 1. APP - Your Service name which you need to monitor
