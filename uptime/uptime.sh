@@ -2,7 +2,7 @@
 
 APP=$1 # <Url Service name>
 URL=$2 #'http://your-service-url.com'
-ACCEPTED_CODE=[ $3 ] #200
+ACCEPTED_CODE=$3  #200
 
 hit(){
   STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" $URL | grep -v %)
