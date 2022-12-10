@@ -15,7 +15,4 @@
 ```
 
 * You need to run this scrpit via Cronjob
-* Eg.
-``` 
-6 * * * * /uptime-monitoring/uptime/uptime.sh <Service name> <Service URL> <Status Code eg. 200>
-```
+* Eg `6 * * * * /uptime-monitoring/uptime/uptime.sh <Service name> <Service URL> <Status Code eg. 200>`
