@@ -20,7 +20,7 @@ if [[ $STATUS_CODE != $ACCEPTED_CODE && $IS_DOWN == " " ]];then
   DOWN_SEC=$(date +%s)
   echo "$DOWN_SEC" > /tmp/is-downtime.txt
   echo "$DOWN_AT" > /tmp/downAt.txt
-  ~/gchat-notifier.sh down $APP $DOWN_AT  
+  uptime-monitoring/google-chat-notify/gchat.sh down $APP $DOWN_AT  
 fi
 if [[ $STATUS_CODE == $ACCEPTED_CODE && $IS_DOWN != " " ]];then     
    UP_AT=$(date '+%Y-%m-%d-%H:%M:%S')
@@ -28,7 +28,7 @@ if [[ $STATUS_CODE == $ACCEPTED_CODE && $IS_DOWN != " " ]];then
    DOWN=$(cat /tmp/is-downtime.txt)
    DOWN_AT=$(cat /tmp/downAt.txt)
    cal_downtime
-   ~/gchat-notifier.sh up $APP $DOWN_AT $UP_AT $DOWNTIME-mins
+   uptime-monitoring/google-chat-notify/gchat.sh up $APP $DOWN_AT $UP_AT $DOWNTIME-mins
    echo " " > /tmp/is-downtime.txt
    exit 0
 fi
