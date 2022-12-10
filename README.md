@@ -1,6 +1,6 @@
 ## Uptime-Monitoring
-You can use this Uptime with bash.
-Low memory and CPU consumption.
+* You can use this Uptime with bash.
+* Low memory and CPU consumption.
 
 ## Needed Arguments
 
@@ -14,8 +14,8 @@ ACCEPTED_CODE=$3 #200
 3. ACCEPTED_CODE = Eg. 200, 404,302
 ```
 
-You need to run this scrpit via Cronjob
-Eg.
+* You need to run this scrpit via Cronjob
+* Eg.
 ``` 
 6 * * * * /uptime-monitoring/uptime/uptime.sh <Service name> <Service URL> <Status Code eg. 200>
 ```
