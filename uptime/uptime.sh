@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP=$1 # <Url Service name>
-URL=$2 #'http://your-service-url.com'
+URL=$2 #'https://your-service-url.com'
 ACCEPTED_CODE=$3  #200
 
 hit(){
