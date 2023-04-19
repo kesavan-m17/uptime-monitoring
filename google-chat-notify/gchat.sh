@@ -1,13 +1,29 @@
 #!/bin/bash
-
-URL='<gchat-web-hook-url>'
-IMAGE='Notification-image'
+ set -e
+URL='https://your-webhook-url'
+IMAGE='your app image'
 NOTIFY=$1
 APP=$2
 DOWN_AT=$3
 UP_AT=$4
-DOWNTIME=$5
-ENV=Production
+ENV=DEV
+
+# Example DOWNTIME array with spaces in the values
+DOWNTIME=("$5""$6""$7")
+
+# Loop through the array and trim leading/trailing spaces from each element
+for ((i=0; i<${#DOWNTIME[@]}; i++)); do
+  DOWNTIME[$i]="${DOWNTIME[$i]#"${DOWNTIME[$i]%%[![:space:]]*}"}"
+  DOWNTIME[$i]="${DOWNTIME[$i]%"${DOWNTIME[$i]##*[![:space:]]}"}"
+done
+
+# Print the trimmed values in the DOWNTIME array
+echo "Trimmed DOWNTIME array:"
+for value in "${DOWNTIME[@]}"; do
+  echo "'$value'"
+done
+
+DOWNTIME=("${DOWNTIME[@]// /\/}")
 
 if [[ $NOTIFY == 'down' ]];
 then
@@ -32,7 +48,6 @@ curl -sL -o /dev/null --location --request POST $URL \
             }
           ]
         }
-
       ]
     }
   ],
@@ -42,7 +57,7 @@ curl -sL -o /dev/null --location --request POST $URL \
 }'
 else
     echo "UP"
-    curl -sL -o /dev/null --location --request POST $URL \
+    curl -sL --location --request POST $URL \
     --header 'Content-Type: application/json' \
     --data-raw '{
     "cards": [
@@ -57,12 +72,11 @@ else
             "widgets": [
                 {
                 "textParagraph": {
-                    "text": "<b>APP : </b> '$APP'<br><b>Down At : </b> '$DOWN_AT'<br><b>Up At : </b> '$UP_AT'<br><b>Down Time : </b> '$DOWNTIME'<br><b>ENVIRONMENT : </b> '$ENV'<br>"
+                    "text": "<b>APP : </b> '$APP'<br><b>Down At : </b> '$DOWN_AT'<br><b>Up At : </b> '$UP_AT'<br><b>Down Time : </b> '${DOWNTIME[@]}'<br><b>ENVIRONMENT : </b> '$ENV'<br>"
                 }
                 }
             ]
             }
-
         ]
         }
     ],
