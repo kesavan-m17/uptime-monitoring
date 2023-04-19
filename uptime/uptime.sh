@@ -34,9 +34,6 @@ time_diff(){
     if [ $seconds -gt 0 ]; then
         output+=" $seconds-sec"
     fi
-
-    # Print the time difference
-    echo "The APP Down Time = $output"
     DOWNTIME=$output    
 }
 
@@ -48,12 +45,10 @@ UP(){
         UP_AT=$(date '+%Y-%m-%d-%H:%M:%S')
         time_diff
         # notify-send 'APP is UP'
-        echo "$DOWNTIME"
         uptime-monitoring/google-chat-notify/gchat.sh up $APP $DOWN_AT $UP_AT $DOWNTIME        
         exit 0            
     fi
     if [[ $(cat /tmp/STATUS.txt) == "UP=true" ]]; then
-        echo "Already UP"
         exit 0
     fi
 }
